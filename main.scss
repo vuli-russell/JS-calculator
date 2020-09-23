@@ -11,23 +11,30 @@
     border: 3px solid black;
     margin: 20px;
     position: relative;
-    background-color: white;
+    background-color: black;
     display: inline-flex;
     flex-direction: column;
 
     .display {
-        font-size: 20px;
+        font-size: 40px;
         height: 2em;
         margin: 10px;
+        color: white;
+        text-align: left;
+        border: 1px solid white;
         
-        text-align: right;
+        &.secondary{
+            text-align: right;
+        }
+        
     }
 
     .buttons {
         display: grid;
         grid-template-columns: repeat(4,1fr);
         height: 100%;
-        background-color: rgba(211,211,211,1);
+        border: 1px solid white;
+        margin: 10px;
         
 
         div {
@@ -39,16 +46,26 @@
             background-color: initial;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgb(150,150,150,1);
+            // border: 1px solid white;
+            background-color: orange;
             border-radius: 50%;
             margin: 10px;
+            color: black;
 
         &:hover {
-            background-color: rgb(88, 88, 88);
+            background-color: rgb(182, 96, 15);
         }
 
         &.invalid-input{
             background-color: red;
+        }
+
+        &.var-value{
+            border-radius: 0;
+
+            &:hover {
+                background-color: orange;
+            }
         }
 
         }

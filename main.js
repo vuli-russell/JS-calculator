@@ -24,6 +24,9 @@ let trailingDecimalPlaceRegex = /\.(?!\d)/g;
 let multiplyOpeningBracketRegex = /(?<!^)(?<![\+\-\*\/\^])\(/g;
 let multiplyClosingBracketRegex = /\)(?![\+\-\*\/\^])(?!$)/g
 
+//variable Regex - update to include other variables
+let variableRegex = /[xy]/g;
+
 const evaluateindicies = (inputStr) => {
     outputStr = inputStr;
     let i = 0;
@@ -78,22 +81,24 @@ const evaluateSubtraction = (inputStr) => {
     let i = 0;
     //starts searching at position 1 to prevent being stuck in loop when answer is negative
     while (outputStr.includes('-', 1) && i < inputStr.length) {
-        outputStr = outputStr.replace(subtractionRegex, (p1, p2, p3) => {
-            return (parseFloat(p2) - parseFloat(p3));
-        });
+        outputStr = outputStr.replace(subtractionRegex, (p1, p2, p3) => (parseFloat(p2) - parseFloat(p3)));
         i++;
     }
     return outputStr;
 };
 
+
+
 //combines all in bodmas order
 const evaluateExpression = (expression, ans) => {
+    //generate variable regex?? also needs to be in inputEvent below so seems like alot fo effort.
+    //look at regex object to build all regex dynamically (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 
+    //replace any variables with their values
+    expression = expression.replace(variableRegex, (p1)=>`(${variableDict[p1]})`);
 
     //include ans
     expression = expression.replace(/ans/g, `(${ans})`);
-
-    console.log(expression);
 
     //add multiply sign between brackets where no operator is specified
     expression = expression.replace(multiplyOpeningBracketRegex, '*(')
@@ -144,8 +149,10 @@ const inputType = (character) => {
     if (!(isNaN(parseInt(character))) || character === '.') {
         return 'digit';
     } else if (character === 's') {
-        return 'ans'
-    } else {
+        return 'ans';
+    } else if(variableRegex.test(character)){
+        return 'variable';
+    }else {
         return character;
     }
 };
@@ -155,6 +162,12 @@ const inputCheck = (newInput, currentString) => {
         case 'digit':
         case 'ans':
             return true;
+        case 'variable':
+            if(variableDict[newInput]){
+                return true;
+            } else {
+                return false
+            };
         case '-':
             if (inputType(currentString.charAt(currentString.length - 1)) == '-') {
                 return false;
@@ -169,7 +182,8 @@ const inputCheck = (newInput, currentString) => {
                     inputType(currentString.charAt(currentString.length - 1)) == 'digit' ||
                     inputType(currentString.charAt(currentString.length - 1)) == '(' ||
                     inputType(currentString.charAt(currentString.length - 1)) == ')' ||
-                    inputType(currentString.charAt(currentString.length - 1)) == 'ans'
+                    inputType(currentString.charAt(currentString.length - 1)) == 'ans'||
+                    inputType(currentString.charAt(currentString.length - 1)) == 'variable'
                 ) {
                     return true;
                 } else {
@@ -196,8 +210,13 @@ const inputCheck = (newInput, currentString) => {
 let answer = '0';
 
 //set to true if equals was just pressed
-
 let newExpression = false;
+
+//contains info on stored variables
+let variableDict = {
+    x: '',
+    y: ''
+};
 
 //INPUTS================================================================================
 //get input buttons
@@ -206,7 +225,7 @@ const buttons = document.querySelectorAll('div.input');
 const inputButtonEvent = (id,button) => {
     if (inputCheck(id, display.innerText)) {
         if (newExpression){
-            if(/[0-9]/.test(id)){
+            if(/[0-9(?:ans)]/.test(id)||variableRegex.test(id)){
                 display.innerText = '';
             }else {
                 display.innerText = 'ans'
@@ -259,7 +278,34 @@ const backspaceEvent = () => {
     secondaryDisplay.innerText = evaluateExpression(display.innerText, answer);
     newExpression = false;
 }
-deleteBtn.addEventListener('click', () => {backspaceEvent});
+deleteBtn.addEventListener('click', () => {backspaceEvent}); //THIS ISNT RUNNING ON CLICK. The function works fine when accessed via keypress(line282). On click does register the div being clicked (line 293)
+
+//VARIABLE BUTTONS - This is all awful and im sure could be improved alot alot alot alot
+const xValue = document.querySelector('#x-value');
+const xSet = document.querySelector('#x-set');
+const xClear = document.querySelector('#x-clear');
+
+const yValue = document.querySelector('#y-value');
+const ySet = document.querySelector('#y-set');
+const yClear = document.querySelector('#y-clear');
+
+xSet.addEventListener('click',()=>{
+    variableDict.x=display.innerText;
+    xValue.innerText = variableDict.x;
+})
+xClear.addEventListener('click',()=>{
+    variableDict.x='';
+    xValue.innerText = '';
+})
+
+ySet.addEventListener('click',()=>{
+    variableDict.y=display.innerText;
+    yValue.innerText = variableDict.y;
+})
+yClear.addEventListener('click',()=>{
+    variableDict.y='';
+    yValue.innerText = '';
+})
 
 
 //Keyboard Interaction========================================================================
@@ -292,8 +338,11 @@ document.addEventListener('keydown', e => {
     }
 });
 
+// document.addEventListener('click',e=>{console.log(e.target)});
+
 //TO ADD
 ////DONE after pressing =, if the next input is a digit/ans then the main display should be cleared before adding, rather than just appending the digit to the answer.
 //change previous character is possible, rather than rejecting input, eg if display is 5+ and * is input, change display to 5* rather than rejecting input
 //add arrows to navigate through input 
 ////DONE ans isnt working properly
+//rewrite event listeners to be a singel event listener and respond appropriately based on e.target.innerHTML or similar.

@@ -10,21 +10,27 @@
   border: 3px solid black;
   margin: 20px;
   position: relative;
-  background-color: white;
+  background-color: black;
   display: inline-flex;
   flex-direction: column;
 }
 .calculator .display {
-  font-size: 20px;
+  font-size: 40px;
   height: 2em;
   margin: 10px;
+  color: white;
+  text-align: left;
+  border: 1px solid white;
+}
+.calculator .display.secondary {
   text-align: right;
 }
 .calculator .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: 100%;
-  background-color: lightgray;
+  border: 1px solid white;
+  margin: 10px;
 }
 .calculator .buttons div {
   height: 60px;
@@ -35,13 +41,20 @@
   background-color: initial;
   align-items: center;
   justify-content: center;
-  border: 1px solid #969696;
+  background-color: orange;
   border-radius: 50%;
   margin: 10px;
+  color: black;
 }
 .calculator .buttons div:hover {
-  background-color: #585858;
+  background-color: #b6600f;
 }
 .calculator .buttons div.invalid-input {
   background-color: red;
+}
+.calculator .buttons div.var-value {
+  border-radius: 0;
+}
+.calculator .buttons div.var-value:hover {
+  background-color: orange;
 }
