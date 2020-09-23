@@ -91,7 +91,9 @@ const evaluateExpression = (expression, ans) => {
 
 
     //include ans
-    expression = expression.replace('ans', `(${ans})`);
+    expression = expression.replace(/ans/g, `(${ans})`);
+
+    console.log(expression);
 
     //add multiply sign between brackets where no operator is specified
     expression = expression.replace(multiplyOpeningBracketRegex, '*(')
@@ -191,7 +193,11 @@ const inputCheck = (newInput, currentString) => {
 };
 
 //save answer so ans button can be used
-let answer = '0'
+let answer = '0';
+
+//set to true if equals was just pressed
+
+let newExpression = false;
 
 //INPUTS================================================================================
 //get input buttons
@@ -199,8 +205,16 @@ const buttons = document.querySelectorAll('div.input');
 
 const inputButtonEvent = (id,button) => {
     if (inputCheck(id, display.innerText)) {
+        if (newExpression){
+            if(/[0-9]/.test(id)){
+                display.innerText = '';
+            }else {
+                display.innerText = 'ans'
+            }
+        };
         display.innerText += id
         secondaryDisplay.innerText = evaluateExpression(display.innerText, answer);
+        newExpression=false;
     } else {
         if(button){
             button.classList.add('invalid-input');
@@ -224,6 +238,7 @@ const equalsEvent = () =>{
     answer = evaluateExpression(display.innerText, answer);
     display.innerText = answer;
     secondaryDisplay.innerText = "";
+    newExpression = true;
 };
 equalsBtn.addEventListener('click', equalsEvent);
 
@@ -233,6 +248,7 @@ const clearEvent = () => {
     display.innerText = "";
     secondaryDisplay.innerText = "";
     answer = '0';
+    newExpression = false;
 };
 clearBtn.addEventListener('click', clearEvent);
 
@@ -241,6 +257,7 @@ const deleteBtn = document.querySelector('#delete');
 const backspaceEvent = () => {
     display.innerText = display.innerText.slice(0, -1);
     secondaryDisplay.innerText = evaluateExpression(display.innerText, answer);
+    newExpression = false;
 }
 deleteBtn.addEventListener('click', () => {backspaceEvent});
 
@@ -276,6 +293,7 @@ document.addEventListener('keydown', e => {
 });
 
 //TO ADD
-//after pressing =, if the next input is a digit/ans then the main display should be cleared before adding, rather than just appending the digit to the answer.
-//REMOVE leading and trailing zeros from input.
+////DONE after pressing =, if the next input is a digit/ans then the main display should be cleared before adding, rather than just appending the digit to the answer.
 //change previous character is possible, rather than rejecting input, eg if display is 5+ and * is input, change display to 5* rather than rejecting input
+//add arrows to navigate through input 
+////DONE ans isnt working properly

@@ -3,15 +3,15 @@
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  text-align: center;
 }
 
 .calculator {
   border: 3px solid black;
   margin: 20px;
   position: relative;
-  width: 250px;
   background-color: white;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
 }
 .calculator .display {
@@ -24,7 +24,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: 100%;
-  border: 2px solid black;
   background-color: lightgray;
 }
 .calculator .buttons div {
@@ -36,7 +35,9 @@
   background-color: initial;
   align-items: center;
   justify-content: center;
-  outline: 1px solid #969696;
+  border: 1px solid #969696;
+  border-radius: 50%;
+  margin: 10px;
 }
 .calculator .buttons div:hover {
   background-color: #585858;

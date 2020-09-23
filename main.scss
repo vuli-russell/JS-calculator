@@ -3,16 +3,16 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+    text-align: center;
 }
+
 
 .calculator {
     border: 3px solid black;
     margin: 20px;
     position: relative;
-    width: 250px;
     background-color: white;
-    // height: 500px;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
 
     .display {
@@ -27,7 +27,6 @@
         display: grid;
         grid-template-columns: repeat(4,1fr);
         height: 100%;
-        border: 2px solid black;
         background-color: rgba(211,211,211,1);
         
 
@@ -40,7 +39,9 @@
             background-color: initial;
             align-items: center;
             justify-content: center;
-            outline: 1px solid rgb(150,150,150,1);
+            border: 1px solid rgb(150,150,150,1);
+            border-radius: 50%;
+            margin: 10px;
 
         &:hover {
             background-color: rgb(88, 88, 88);
