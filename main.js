@@ -281,7 +281,7 @@ const backspaceEvent = () => {
     secondaryDisplay.innerText = evaluateExpression(display.innerText, answer);
     newExpression = false;
 }
-deleteBtn.addEventListener('click', () => {backspaceEvent}); //THIS ISNT RUNNING ON CLICK. The function works fine when accessed via keypress(line282). On click does register the div being clicked (line 293)
+deleteBtn.addEventListener('click', backspaceEvent); //THIS ISNT RUNNING ON CLICK. The function works fine when accessed via keypress(line282). On click does register the div being clicked (line 293)
 
 //VARIABLE BUTTONS - This is all awful and im sure could be improved alot alot alot alot
 // should generate these from the variablesDict
@@ -342,7 +342,7 @@ document.addEventListener('keydown', e => {
     }
 });
 
-// document.addEventListener('click',e=>{console.log(e.target)});
+document.addEventListener('click',e=>{console.log(e.target)});
 
 //TO ADD
 ////DONE after pressing =, if the next input is a digit/ans then the main display should be cleared before adding, rather than just appending the digit to the answer.

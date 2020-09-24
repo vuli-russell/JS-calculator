@@ -4,72 +4,108 @@
     box-sizing: border-box;
     font-family: sans-serif;
     text-align: center;
+    transform-style: preserve-3d;       
 }
+
+$rotationx: 10deg;
+$rotationy: 10deg;
+$rotationz: 10deg;
+
+$calc-width: 362px;
+$calc-height: 720px;
+$calc-depth: 20px;
+
 
 
 .calculator {
-    border: 3px solid black;
-    margin: 20px;
-    position: relative;
-    background-color: black;
-    display: inline-flex;
-    flex-direction: column;
+    perspective: 64em;
+    height: 100vh;
+    width: 100%;
 
-    .display {
-        font-size: 40px;
-        height: 2em;
-        margin: 10px;
-        color: white;
-        text-align: left;
-        border: 1px solid white;
-        
-        &.secondary{
-            text-align: right;
-        }
+    .bottom-face {
+        position: absolute;
+        top: calc(50% - ( 0.5 * #{$calc-depth}));
+        left: calc(50% - ( 0.5 * #{$calc-width}));
+        width: $calc-width;
+        height: $calc-depth;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 3px solid black;
         
     }
-
-    .buttons {
-        display: grid;
-        grid-template-columns: repeat(4,1fr);
-        height: 100%;
-        border: 1px solid white;
-        margin: 10px;
+    
+    .front-face{
+        position: absolute;
+        top: calc(50% - (0.5 * #{$calc-height}));
+        left: calc(50% - (0.5 * #{$calc-width}));
+        border: 3px solid black;
+        background-color: rgba(0, 0, 0, 0.2);
+        width:  $calc-width;
+        height: $calc-height;
+        margin: calc(0.5 * $calc-height) calc(0.5 * $calc-width);
+        display: flex;
+        flex-direction: column;
         
 
-        div {
-            height: 60px;
-            width: 60px;
-            display: flex;
-            font-size: 20px;
-            transition: ease 0.2s;
-            background-color: initial;
-            align-items: center;
-            justify-content: center;
-            // border: 1px solid white;
-            background-color: orange;
-            border-radius: 50%;
+        .displays {
+
+            .display{
+                font-size: 40px;
+                height: 2em;
+                margin: 10px;
+                color: white;
+                text-align: left;
+                border: 1px solid white;
+                
+    
+                &.secondary{
+                    text-align: right;
+                }
+            }    
+            
+    
+            
+        }
+    
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            height: 100%;
+            border: 1px solid white;
             margin: 10px;
-            color: black;
-
-        &:hover {
-            background-color: rgb(182, 96, 15);
-        }
-
-        &.invalid-input{
-            background-color: red;
-        }
-
-        &.var-value{
-            border-radius: 0;
-
-            &:hover {
+            
+    
+            div {
+                height: 40px;
+                width: 40px;
+                display: flex;
+                font-size: 20px;
+                transition: ease 0.2s;
+                background-color: initial;
+                align-items: center;
+                justify-content: center;
+                // border: 1px solid white;
                 background-color: orange;
+                border-radius: 50%;
+                margin: 10px;
+                color: black;
+    
+            &:hover {
+                background-color: rgb(182, 96, 15);
+            }
+    
+            &.invalid-input{
+                background-color: red;
+            }
+    
+            &.var-value{
+                border-radius: 0;
+    
+                &:hover {
+                    background-color: orange;
+                }
+            }
             }
         }
-
-        }
     }
-
 }
 

@@ -4,17 +4,36 @@
   box-sizing: border-box;
   font-family: sans-serif;
   text-align: center;
+  transform-style: preserve-3d;
 }
 
 .calculator {
+  perspective: 64em;
+  height: 100vh;
+  width: 100%;
+}
+.calculator .bottom-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * 20px));
+  left: calc(50% - ( 0.5 * 362px));
+  width: 362px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
   border: 3px solid black;
-  margin: 20px;
-  position: relative;
-  background-color: black;
-  display: inline-flex;
+}
+.calculator .front-face {
+  position: absolute;
+  top: calc(50% - (0.5 * 720px));
+  left: calc(50% - (0.5 * 362px));
+  border: 3px solid black;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 362px;
+  height: 720px;
+  margin: calc(0.5 * $calc-height) calc(0.5 * $calc-width);
+  display: flex;
   flex-direction: column;
 }
-.calculator .display {
+.calculator .front-face .displays .display {
   font-size: 40px;
   height: 2em;
   margin: 10px;
@@ -22,19 +41,19 @@
   text-align: left;
   border: 1px solid white;
 }
-.calculator .display.secondary {
+.calculator .front-face .displays .display.secondary {
   text-align: right;
 }
-.calculator .buttons {
+.calculator .front-face .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: 100%;
   border: 1px solid white;
   margin: 10px;
 }
-.calculator .buttons div {
-  height: 60px;
-  width: 60px;
+.calculator .front-face .buttons div {
+  height: 40px;
+  width: 40px;
   display: flex;
   font-size: 20px;
   transition: ease 0.2s;
@@ -46,15 +65,15 @@
   margin: 10px;
   color: black;
 }
-.calculator .buttons div:hover {
+.calculator .front-face .buttons div:hover {
   background-color: #b6600f;
 }
-.calculator .buttons div.invalid-input {
+.calculator .front-face .buttons div.invalid-input {
   background-color: red;
 }
-.calculator .buttons div.var-value {
+.calculator .front-face .buttons div.var-value {
   border-radius: 0;
 }
-.calculator .buttons div.var-value:hover {
+.calculator .front-face .buttons div.var-value:hover {
   background-color: orange;
 }
