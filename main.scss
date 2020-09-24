@@ -34,13 +34,13 @@ $calc-height: calc(70px + (4 * #{$display-font-size}) + (8 * (#{$button-size} + 
 $calc-depth: 40px;
 
 $heading-size: 80px;
-$info-height: 360px;
+$info-height: 380px;
 $more-info-font-size: 40px;
 $info-width: 25vw;
 $info-font-size: 20px;
 
 body {
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: rgb(9, 9, 44);
     text-align: left;    
 
@@ -248,7 +248,17 @@ body {
             background-color: $back-color;
             width:  $calc-width;
             height: $calc-height;
-            transform: translateZ(calc( -1 * #{$calc-depth}));
+            transform: translateZ(calc( -1 * #{$calc-depth})) rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            
+            p{
+                color: black;
+                padding: 50px;
+                font-size: 20px;
+                letter-spacing: 0.05em;
+            }
         }
     }
 }

@@ -383,6 +383,7 @@ document.addEventListener('mousedown',(e)=>{
     mousedown=true
     previousMouseLocation = [e.x,e.y];
 });
+
 document.addEventListener('mouseup',()=>{mousedown=false});
 
 
@@ -411,7 +412,7 @@ document.addEventListener('mousemove',(e)=>{
 //Two decimal placs in a row breaks it
 //standard form causes issuses (js return this from some calcs),  add step to parser
 //max number of characters??
-//add mouse interaction for rotation - FIX TO ACCOUNT FOR CURRENT LOCATION OF AXIS
+//add mouse interaction for rotation - FIX TO ACCOUNT FOR CURRENT LOCATION OF AXIS. Also add touch support
 //m+ should only be able to be added when newexpression = true
 //media queries to resize calculator and info boxes
 //background - stars or someshit idk

@@ -9,7 +9,7 @@
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: #09092c;
   text-align: left;
 }
@@ -43,7 +43,7 @@ body .info-pane.shown {
 }
 body .info-pane .opener {
   background-color: red;
-  width: 360px;
+  width: 380px;
   position: absolute;
   font-size: 40px;
   line-height: 1.5em;
@@ -56,7 +56,7 @@ body .info-pane .about {
   font-size: 20px;
   width: 25vw;
   margin-left: calc(1.5 * 40px);
-  height: 360px;
+  height: 380px;
   border: 1px dashed white;
   background-color: transparent;
   color: white;
@@ -183,5 +183,14 @@ body .calculator .back-face {
   background-color: #69065a;
   width: calc(20px + ((70px + (2 * 10px)) * 4));
   height: calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))));
-  transform: translateZ(calc( -1 * 40px));
+  transform: translateZ(calc( -1 * 40px)) rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+body .calculator .back-face p {
+  color: black;
+  padding: 50px;
+  font-size: 20px;
+  letter-spacing: 0.05em;
 }
