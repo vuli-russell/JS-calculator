@@ -146,7 +146,7 @@ const secondaryDisplay = document.querySelector('p.display.secondary');
 
 //allows switch statement
 const inputType = (character) => {
-    if (!(isNaN(parseInt(character))) || character === '.') {
+    if (!(isNaN(parseInt(character)))) {
         return 'digit';
     } else if (character === 's') {
         return 'ans';
@@ -180,6 +180,7 @@ const inputCheck = (newInput, currentString) => {
             case '+':
                 if (
                     inputType(currentString.charAt(currentString.length - 1)) == 'digit' ||
+                    inputType(currentString.charAt(currentString.length - 1)) == '.' ||
                     inputType(currentString.charAt(currentString.length - 1)) == '(' ||
                     inputType(currentString.charAt(currentString.length - 1)) == ')' ||
                     inputType(currentString.charAt(currentString.length - 1)) == 'ans'||
@@ -200,6 +201,7 @@ const inputCheck = (newInput, currentString) => {
                     case ')':
                         if (
                             inputType(currentString.charAt(currentString.length - 1)) == 'digit' ||
+                            inputType(currentString.charAt(currentString.length - 1)) == '.' ||
                             inputType(currentString.charAt(currentString.length - 1)) == ')'
                         ) {
                             return true;
@@ -339,36 +341,64 @@ document.addEventListener('keydown', e => {
             break;
         case 'a':
         case 'ArrowLeft':
-            yRotateInput -= 10;
+            yRotation -= 10;
             updateRotation();
             break;
         case 'd':
         case 'ArrowRight':
-            yRotateInput += 10;
+            yRotation += 10;
             updateRotation();
             break;
         case 'w':
         case 'ArrowUp':
-            xRotateInput += 10;
+            xRotation += 10;
             updateRotation();
             break;
         case 's':
         case 'ArrowDown':
-            xRotateInput -= 10;
+            xRotation -= 10;
             updateRotation();
             break;
         case 'q':
-            zRotateInput -= 10;
+            zRotation -= 10;
             updateRotation();
             break;
         case 'e':
-            zRotateInput += 10;
+            zRotation += 10;
             updateRotation();
             break;
         default:
             break;
     }
 });
+
+//mouse drag detection================================================================================
+
+//store previous mouse location (x,y)
+let previousMouseLocation = [];
+
+//detect if mouse is held down
+let mousedown = null;
+document.addEventListener('mousedown',(e)=>{
+    mousedown=true
+    previousMouseLocation = [e.x,e.y];
+});
+document.addEventListener('mouseup',()=>{mousedown=false});
+
+
+document.addEventListener('mousemove',(e)=>{
+    if(mousedown){
+        let xMovement = e.x - previousMouseLocation[0];
+        let yMovement = e.y - previousMouseLocation[1];
+        yRotation += (xMovement/10);
+        xRotation += (yMovement/10);
+        updateRotation();
+        previousMouseLocation = [e.x,e.y];
+    }
+});
+
+
+//=====================================================================================================
 
 // document.addEventListener('click',e=>{console.log(e.target)});
 
@@ -381,7 +411,7 @@ document.addEventListener('keydown', e => {
 //Two decimal placs in a row breaks it
 //standard form causes issuses (js return this from some calcs),  add step to parser
 //max number of characters??
-//add mouse interaction for rotation
+//add mouse interaction for rotation - FIX TO ACCOUNT FOR CURRENT LOCATION OF AXIS
 //m+ should only be able to be added when newexpression = true
 //media queries to resize calculator and info boxes
 //background - stars or someshit idk
@@ -391,14 +421,14 @@ document.addEventListener('keydown', e => {
 const calculator = document.querySelector('.calculator')
 
 const updateRotation = () => {
-    transformStr = `rotateX(${xRotateInput}deg) rotateY(${yRotateInput}deg) rotateZ(${zRotateInput}deg`;
+    transformStr = `rotateX(${xRotation}deg) rotateY(${yRotation}deg) rotateZ(${zRotation}deg`;
     calculator.style.transform = transformStr;
 };
 
 //initial values
-let xRotateInput = 40;
-let yRotateInput = 20;
-let zRotateInput = -20;
+let xRotation = 40;
+let yRotation = 20;
+let zRotation = -20;
 updateRotation();
 
 //more info box
