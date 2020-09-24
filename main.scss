@@ -34,7 +34,7 @@ $calc-height: calc(70px + (4 * #{$display-font-size}) + (8 * (#{$button-size} + 
 $calc-depth: 40px;
 
 $heading-size: 80px;
-$info-height: 350px;
+$info-height: 360px;
 $more-info-font-size: 40px;
 $info-width: 25vw;
 $info-font-size: 20px;
@@ -43,6 +43,10 @@ body {
     overflow: hidden;
     background-color: rgb(9, 9, 44);
     text-align: left;    
+
+    * {
+        font-family: 'Londrina Solid';
+    }
 
     h1{
         font-family: 'Londrina Outline';
@@ -102,7 +106,9 @@ body {
             }
 
             p {
-                padding: 5px;
+                padding: 10px;
+                font-weight: 100;
+                letter-spacing: 0.1em;
             }
 
 

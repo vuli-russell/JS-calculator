@@ -383,8 +383,9 @@ document.addEventListener('keydown', e => {
 //max number of characters??
 //add mouse interaction for rotation
 //m+ should only be able to be added when newexpression = true
-//media queries to resize calculator
+//media queries to resize calculator and info boxes
 //background - stars or someshit idk
+//add CUSTOMISE allowing color choice and backface text or something 
 
 //DISPLAY STUFF
 const calculator = document.querySelector('.calculator')
