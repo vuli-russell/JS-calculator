@@ -4,57 +4,124 @@
   box-sizing: border-box;
   font-family: sans-serif;
   text-align: center;
+  perspective: 10000px;
+  perspective-origin: center;
+  transform-style: preserve-3d;
+}
+
+body {
+  overflow: hidden;
+  background-color: #0f0f47;
 }
 
 .calculator {
-  border: 3px solid black;
-  margin: 20px;
-  position: relative;
-  background-color: black;
-  display: inline-flex;
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+}
+.calculator .front-face {
+  position: absolute;
+  top: calc(50% - (0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  left: calc(50% - (0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  border: 1px solid black;
+  background-color: gold;
+  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  display: flex;
   flex-direction: column;
 }
-.calculator .display {
+.calculator .front-face .displays .display {
   font-size: 40px;
   height: 2em;
   margin: 10px;
   color: white;
   text-align: left;
   border: 1px solid white;
+  background-color: black;
 }
-.calculator .display.secondary {
+.calculator .front-face .displays .display.secondary {
   text-align: right;
 }
-.calculator .buttons {
+.calculator .front-face .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: 100%;
   border: 1px solid white;
   margin: 10px;
 }
-.calculator .buttons div {
-  height: 60px;
-  width: 60px;
+.calculator .front-face .buttons div {
+  height: 40px;
+  width: 40px;
   display: flex;
   font-size: 20px;
   transition: ease 0.2s;
   background-color: initial;
   align-items: center;
   justify-content: center;
-  background-color: orange;
+  background-color: grey;
   border-radius: 50%;
   margin: 10px;
   color: black;
 }
-.calculator .buttons div:hover {
-  background-color: #b6600f;
+.calculator .front-face .buttons div:hover {
+  background-color: white;
 }
-.calculator .buttons div.invalid-input {
+.calculator .front-face .buttons div.invalid-input {
   background-color: red;
 }
-.calculator .buttons div.var-value {
+.calculator .front-face .buttons div.var-value {
   border-radius: 0;
 }
-.calculator .buttons div.var-value:hover {
-  background-color: orange;
+.calculator .front-face .buttons div.var-value:hover {
+  background-color: button-color;
+}
+.calculator .bottom-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * 40px));
+  left: calc(50% - ( 0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  height: 40px;
+  background-color: #ec4b00;
+  border: 1px solid black;
+  transform: translateY(calc(calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))/2)) translateZ(calc((-1) * 20px)) rotateX(90deg);
+}
+.calculator .top-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * 40px));
+  left: calc(50% - ( 0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  height: 40px;
+  background-color: #d9ff00;
+  border: 1px solid black;
+  transform: translateY(calc((-1) * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))/2)) translateZ(calc((-1) * 20px)) rotateX(90deg);
+}
+.calculator .left-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  left: calc(50% - ( 0.5 * 40px));
+  width: 40px;
+  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  background-color: #00a2ff;
+  border: 1px solid black;
+  transform: translateX(calc((-1) * calc(20px + ((40px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 20px)) rotateY(90deg);
+}
+.calculator .right-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  left: calc(50% - ( 0.5 * 40px));
+  width: 40px;
+  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  background-color: #f700ff;
+  border: 1px solid black;
+  transform: translateX(calc(calc(20px + ((40px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 20px)) rotateY(90deg);
+}
+.calculator .back-face {
+  position: absolute;
+  top: calc(50% - (0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  left: calc(50% - (0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  border: 1px solid black;
+  background-color: #69065a;
+  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  transform: translateZ(calc( -1 * 40px));
 }

@@ -4,72 +4,172 @@
     box-sizing: border-box;
     font-family: sans-serif;
     text-align: center;
+    perspective: 10000px;
+    perspective-origin: center;
+    transform-style: preserve-3d; 
 }
 
 
+$top-color: rgb(217, 255, 0);
+$bottom-color: rgb(236, 75, 0);
+$left-color: rgb(0, 162, 255);
+$right-color: rgb(247, 0, 255);
+$back-color: rgb(105, 6, 90);
+$front-color: rgba(255, 215, 0, 1);
+
+$display-color: black;
+$display-text-color: white;
+$display-font-size: 40px;
+
+$button-color: grey;
+$button-text-color: black;
+$button-hover-color: white;
+$button-error-color: red;
+
+$button-size: 40px;
+$button-font-size: 20px;
+$button-margin: 10px;
+
+//10 + 2*displayfont +10 +2*displayfont + 10 + 10 +(6*(buttonheight + 2xmargin)) +10 + 10 + (2* buttonheigh + 2x margins) + 10
+
+$calc-width: calc(20px + ((#{$button-size} + (2 * #{$button-margin})) * 4));
+$calc-height: calc(70px + (4 * #{$display-font-size}) + (8 * (#{$button-size} + (2 * #{$button-margin}))));
+$calc-depth: 40px;
+
+body {
+    overflow: hidden;
+    background-color: rgb(15, 15, 71);
+}   
 .calculator {
-    border: 3px solid black;
-    margin: 20px;
-    position: relative;
-    background-color: black;
-    display: inline-flex;
-    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    margin: auto;
 
-    .display {
-        font-size: 40px;
-        height: 2em;
-        margin: 10px;
-        color: white;
-        text-align: left;
-        border: 1px solid white;
-        
-        &.secondary{
-            text-align: right;
+    
+    .front-face{
+        position: absolute;
+        top: calc(50% - (0.5 * #{$calc-height}));
+        left: calc(50% - (0.5 * #{$calc-width}));
+        border: 1px solid black;
+        background-color: $front-color;
+        width:  $calc-width;
+        height: $calc-height;
+        display: flex;
+        flex-direction: column;  
+
+        .displays {
+
+            .display{
+                font-size: $display-font-size;
+                height: 2em;
+                margin: 10px;
+                color: $display-text-color;
+                text-align: left;
+                border: 1px solid white;
+                background-color: $display-color;
+                
+    
+                &.secondary{
+                    text-align: right;
+                }
+            }      
         }
-        
-    }
 
-    .buttons {
-        display: grid;
-        grid-template-columns: repeat(4,1fr);
-        height: 100%;
-        border: 1px solid white;
-        margin: 10px;
-        
-
-        div {
-            height: 60px;
-            width: 60px;
-            display: flex;
-            font-size: 20px;
-            transition: ease 0.2s;
-            background-color: initial;
-            align-items: center;
-            justify-content: center;
-            // border: 1px solid white;
-            background-color: orange;
-            border-radius: 50%;
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            height: 100%;
+            border: 1px solid white;
             margin: 10px;
-            color: black;
-
-        &:hover {
-            background-color: rgb(182, 96, 15);
-        }
-
-        &.invalid-input{
-            background-color: red;
-        }
-
-        &.var-value{
-            border-radius: 0;
-
+            
+    
+            div {
+                height: $button-size;
+                width: $button-size;
+                display: flex;
+                font-size: $button-font-size;
+                transition: ease 0.2s;
+                background-color: initial;
+                align-items: center;
+                justify-content: center;
+                background-color: $button-color;
+                border-radius: 50%;
+                margin: $button-margin;
+                color: $button-text-color;
+    
             &:hover {
-                background-color: orange;
+                background-color: $button-hover-color;
+            }
+    
+            &.invalid-input{
+                background-color: $button-error-color
+            }
+    
+            &.var-value{
+                border-radius: 0;
+    
+                &:hover {
+                    background-color: button-color;
+                }
+            }
             }
         }
-
-        }
     }
 
+    .bottom-face {
+        position: absolute;
+        top: calc(50% - ( 0.5 * #{$calc-depth}));
+        left: calc(50% - ( 0.5 * #{$calc-width}));
+        width: $calc-width;
+        height: $calc-depth;
+        background-color: $bottom-color;
+        border: 1px solid black;
+        transform: translateY(calc(#{$calc-height / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateX(90deg);
+    }
+
+    .top-face {
+        position: absolute;
+        top: calc(50% - ( 0.5 * #{$calc-depth}));
+        left: calc(50% - ( 0.5 * #{$calc-width}));
+        width: $calc-width;
+        height: $calc-depth;
+        background-color: $top-color;
+        border: 1px solid black;
+        transform: translateY(calc((-1) * #{$calc-height / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateX(90deg);
+    }
+
+
+    .left-face {
+        position: absolute;
+        top: calc(50% - ( 0.5 * #{$calc-height}));
+        left: calc(50% - ( 0.5 * #{$calc-depth}));
+        width: $calc-depth;
+        height: $calc-height;
+        background-color: $left-color;
+        border: 1px solid black;
+        transform: translateX(calc((-1) * #{$calc-width / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateY(90deg);
+    }
+
+    .right-face {
+        position: absolute;
+        top: calc(50% - ( 0.5 * #{$calc-height}));
+        left: calc(50% - ( 0.5 * #{$calc-depth}));
+        width: $calc-depth;
+        height: $calc-height;
+        background-color: $right-color;
+        border: 1px solid black;
+        transform: translateX(calc(#{$calc-width / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateY(90deg);
+    }
+
+    .back-face{
+        position: absolute;
+        top: calc(50% - (0.5 * #{$calc-height}));
+        left: calc(50% - (0.5 * #{$calc-width}));
+        border: 1px solid black;
+        background-color: $back-color;
+        width:  $calc-width;
+        height: $calc-height;
+        transform: translateZ(calc( -1 * #{$calc-depth}));
+    }
 }
 

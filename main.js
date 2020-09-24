@@ -281,7 +281,7 @@ const backspaceEvent = () => {
     secondaryDisplay.innerText = evaluateExpression(display.innerText, answer);
     newExpression = false;
 }
-deleteBtn.addEventListener('click', () => {backspaceEvent}); //THIS ISNT RUNNING ON CLICK. The function works fine when accessed via keypress(line282). On click does register the div being clicked (line 293)
+deleteBtn.addEventListener('click', backspaceEvent); //THIS ISNT RUNNING ON CLICK. The function works fine when accessed via keypress(line282). On click does register the div being clicked (line 293)
 
 //VARIABLE BUTTONS - This is all awful and im sure could be improved alot alot alot alot
 // should generate these from the variablesDict
@@ -337,6 +337,34 @@ document.addEventListener('keydown', e => {
         case 'input button':
             inputButtonEvent(e.key,null);
             break;
+        case 'a':
+        case 'ArrowLeft':
+            yRotateInput -= 10;
+            updateRotation();
+            break;
+        case 'd':
+        case 'ArrowRight':
+            yRotateInput += 10;
+            updateRotation();
+            break;
+        case 'w':
+        case 'ArrowUp':
+            xRotateInput += 10;
+            updateRotation();
+            break;
+        case 's':
+        case 'ArrowDown':
+            xRotateInput -= 10;
+            updateRotation();
+            break;
+        case 'q':
+            zRotateInput -= 10;
+            updateRotation();
+            break;
+        case 'e':
+            zRotateInput += 10;
+            updateRotation();
+            break;
         default:
             break;
     }
@@ -350,3 +378,26 @@ document.addEventListener('keydown', e => {
 //add arrows to navigate through input 
 ////DONE ans isnt working properly
 //rewrite event listeners to be a singel event listener and respond appropriately based on e.target.innerHTML or similar.
+//Two decimal placs in a row breaks it
+//standard form causes issuses (js return this from some calcs),  add step to parser
+//max number of characters??
+//add mouse interaction for rotation
+//m+ should only be able to be added when newexpression = true
+
+//DISPLAY STUFF
+const calculator = document.querySelector('.calculator')
+
+const updateRotation = () => {
+    transformStr = `rotateX(${xRotateInput}deg) rotateY(${yRotateInput}deg) rotateZ(${zRotateInput}deg`;
+    calculator.style.transform = transformStr;
+};
+
+//initial values
+let xRotateInput = 40;
+let yRotateInput = 20;
+let zRotateInput = -20;
+updateRotation();
+
+
+
+
