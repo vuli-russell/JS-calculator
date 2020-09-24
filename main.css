@@ -4,32 +4,29 @@
   box-sizing: border-box;
   font-family: sans-serif;
   text-align: center;
+  perspective: 10000px;
+  perspective-origin: center;
   transform-style: preserve-3d;
 }
 
+body {
+  overflow: hidden;
+  background-color: #0f0f47;
+}
+
 .calculator {
-  perspective: 64em;
   height: 100vh;
   width: 100%;
-}
-.calculator .bottom-face {
-  position: absolute;
-  top: calc(50% - ( 0.5 * 20px));
-  left: calc(50% - ( 0.5 * 362px));
-  width: 362px;
-  height: 20px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border: 3px solid black;
+  margin: auto;
 }
 .calculator .front-face {
   position: absolute;
-  top: calc(50% - (0.5 * 720px));
-  left: calc(50% - (0.5 * 362px));
-  border: 3px solid black;
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 362px;
-  height: 720px;
-  margin: calc(0.5 * $calc-height) calc(0.5 * $calc-width);
+  top: calc(50% - (0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  left: calc(50% - (0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  border: 1px solid black;
+  background-color: gold;
+  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
   display: flex;
   flex-direction: column;
 }
@@ -40,6 +37,7 @@
   color: white;
   text-align: left;
   border: 1px solid white;
+  background-color: black;
 }
 .calculator .front-face .displays .display.secondary {
   text-align: right;
@@ -60,13 +58,13 @@
   background-color: initial;
   align-items: center;
   justify-content: center;
-  background-color: orange;
+  background-color: grey;
   border-radius: 50%;
   margin: 10px;
   color: black;
 }
 .calculator .front-face .buttons div:hover {
-  background-color: #b6600f;
+  background-color: white;
 }
 .calculator .front-face .buttons div.invalid-input {
   background-color: red;
@@ -75,5 +73,55 @@
   border-radius: 0;
 }
 .calculator .front-face .buttons div.var-value:hover {
-  background-color: orange;
+  background-color: button-color;
+}
+.calculator .bottom-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * 40px));
+  left: calc(50% - ( 0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  height: 40px;
+  background-color: #ec4b00;
+  border: 1px solid black;
+  transform: translateY(calc(calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))/2)) translateZ(calc((-1) * 20px)) rotateX(90deg);
+}
+.calculator .top-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * 40px));
+  left: calc(50% - ( 0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  height: 40px;
+  background-color: #d9ff00;
+  border: 1px solid black;
+  transform: translateY(calc((-1) * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))/2)) translateZ(calc((-1) * 20px)) rotateX(90deg);
+}
+.calculator .left-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  left: calc(50% - ( 0.5 * 40px));
+  width: 40px;
+  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  background-color: #00a2ff;
+  border: 1px solid black;
+  transform: translateX(calc((-1) * calc(20px + ((40px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 20px)) rotateY(90deg);
+}
+.calculator .right-face {
+  position: absolute;
+  top: calc(50% - ( 0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  left: calc(50% - ( 0.5 * 40px));
+  width: 40px;
+  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  background-color: #f700ff;
+  border: 1px solid black;
+  transform: translateX(calc(calc(20px + ((40px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 20px)) rotateY(90deg);
+}
+.calculator .back-face {
+  position: absolute;
+  top: calc(50% - (0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  left: calc(50% - (0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  border: 1px solid black;
+  background-color: #69065a;
+  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  transform: translateZ(calc( -1 * 40px));
 }
