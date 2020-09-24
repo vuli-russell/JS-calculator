@@ -198,7 +198,10 @@ const inputCheck = (newInput, currentString) => {
                     case '(':
                         return true;
                     case ')':
-                        if (inputType(currentString.charAt(currentString.length - 1)) == 'digit') {
+                        if (
+                            inputType(currentString.charAt(currentString.length - 1)) == 'digit' ||
+                            inputType(currentString.charAt(currentString.length - 1)) == ')'
+                        ) {
                             return true;
                         }
                         default:
