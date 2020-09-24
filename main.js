@@ -383,6 +383,8 @@ document.addEventListener('keydown', e => {
 //max number of characters??
 //add mouse interaction for rotation
 //m+ should only be able to be added when newexpression = true
+//media queries to resize calculator
+//background - stars or someshit idk
 
 //DISPLAY STUFF
 const calculator = document.querySelector('.calculator')
@@ -397,6 +399,16 @@ let xRotateInput = 40;
 let yRotateInput = 20;
 let zRotateInput = -20;
 updateRotation();
+
+//more info box
+const infoPane = document.querySelector('.info-pane');
+const opener = document.querySelector('.opener');
+const moreInfo = document.querySelector('.about');
+
+opener.addEventListener('click',()=>{
+    moreInfo.classList.toggle('shown');
+    infoPane.classList.toggle('shown');
+});
 
 
 

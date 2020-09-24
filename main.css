@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
-  text-align: center;
   perspective: 10000px;
   perspective-origin: center;
   transform-style: preserve-3d;
@@ -11,26 +10,82 @@
 
 body {
   overflow: hidden;
-  background-color: #0f0f47;
+  background-color: #09092c;
+  text-align: left;
 }
-
-.calculator {
+body h1 {
+  font-family: "Londrina Outline";
+  color: white;
+  font-size: 80px;
+  margin: 20px;
+  padding: 20px;
+  border: 2px dashed white;
+  display: inline-block;
+}
+body h2 {
+  font-family: "Londrina Outline";
+}
+body .info-pane {
+  display: inline-block;
+  position: fixed;
+  top: 50%;
+  transform: translateX(-40px);
+  transition: 0.5s ease;
+}
+body .info-pane:hover {
+  transform: translateX(0px);
+}
+body .info-pane.shown {
+  transform: translateX(0px);
+}
+body .info-pane .opener {
+  background-color: red;
+  width: 350px;
+  position: absolute;
+  font-size: 40px;
+  line-height: 1.5em;
+  transform: rotateZ(90deg) translateX(calc((-1.5 * 40px)));
+  transform-origin: bottom left;
+  text-align: center;
+}
+body .info-pane .about {
+  border: 1px dashed white;
+  font-size: 20px;
+  width: 25vw;
+  margin-left: calc(1.5 * 40px);
+  height: 350px;
+  border: 1px dashed white;
+  background-color: transparent;
+  color: white;
+  transform: rotateY(100deg);
+  transform-origin: left;
+  transition: 0.5s ease;
+}
+body .info-pane .about.shown {
+  transform: rotateY(0deg);
+}
+body .info-pane .about p {
+  padding: 5px;
+}
+body .calculator {
+  position: absolute;
+  top: 0;
   height: 100vh;
   width: 100%;
   margin: auto;
 }
-.calculator .front-face {
+body .calculator .front-face {
   position: absolute;
-  top: calc(50% - (0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
-  left: calc(50% - (0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  top: calc(50% - (0.5 * calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))))));
+  left: calc(50% - (0.5 * calc(20px + ((70px + (2 * 10px)) * 4))));
   border: 1px solid black;
   background-color: gold;
-  width: calc(20px + ((40px + (2 * 10px)) * 4));
-  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  width: calc(20px + ((70px + (2 * 10px)) * 4));
+  height: calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))));
   display: flex;
   flex-direction: column;
 }
-.calculator .front-face .displays .display {
+body .calculator .front-face .displays .display {
   font-size: 40px;
   height: 2em;
   margin: 10px;
@@ -39,21 +94,21 @@ body {
   border: 1px solid white;
   background-color: black;
 }
-.calculator .front-face .displays .display.secondary {
+body .calculator .front-face .displays .display.secondary {
   text-align: right;
 }
-.calculator .front-face .buttons {
+body .calculator .front-face .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: 100%;
   border: 1px solid white;
   margin: 10px;
 }
-.calculator .front-face .buttons div {
-  height: 40px;
-  width: 40px;
+body .calculator .front-face .buttons div {
+  height: 70px;
+  width: 70px;
   display: flex;
-  font-size: 20px;
+  font-size: 30px;
   transition: ease 0.2s;
   background-color: initial;
   align-items: center;
@@ -63,65 +118,65 @@ body {
   margin: 10px;
   color: black;
 }
-.calculator .front-face .buttons div:hover {
+body .calculator .front-face .buttons div:hover {
   background-color: white;
 }
-.calculator .front-face .buttons div.invalid-input {
+body .calculator .front-face .buttons div.invalid-input {
   background-color: red;
 }
-.calculator .front-face .buttons div.var-value {
+body .calculator .front-face .buttons div.var-value {
   border-radius: 0;
 }
-.calculator .front-face .buttons div.var-value:hover {
+body .calculator .front-face .buttons div.var-value:hover {
   background-color: button-color;
 }
-.calculator .bottom-face {
+body .calculator .bottom-face {
   position: absolute;
   top: calc(50% - ( 0.5 * 40px));
-  left: calc(50% - ( 0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
-  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  left: calc(50% - ( 0.5 * calc(20px + ((70px + (2 * 10px)) * 4))));
+  width: calc(20px + ((70px + (2 * 10px)) * 4));
   height: 40px;
   background-color: #ec4b00;
   border: 1px solid black;
-  transform: translateY(calc(calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))/2)) translateZ(calc((-1) * 20px)) rotateX(90deg);
+  transform: translateY(calc(calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))))/2)) translateZ(calc((-1) * 20px)) rotateX(90deg);
 }
-.calculator .top-face {
+body .calculator .top-face {
   position: absolute;
   top: calc(50% - ( 0.5 * 40px));
-  left: calc(50% - ( 0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
-  width: calc(20px + ((40px + (2 * 10px)) * 4));
+  left: calc(50% - ( 0.5 * calc(20px + ((70px + (2 * 10px)) * 4))));
+  width: calc(20px + ((70px + (2 * 10px)) * 4));
   height: 40px;
   background-color: #d9ff00;
   border: 1px solid black;
-  transform: translateY(calc((-1) * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))/2)) translateZ(calc((-1) * 20px)) rotateX(90deg);
+  transform: translateY(calc((-1) * calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))))/2)) translateZ(calc((-1) * 20px)) rotateX(90deg);
 }
-.calculator .left-face {
+body .calculator .left-face {
   position: absolute;
-  top: calc(50% - ( 0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  top: calc(50% - ( 0.5 * calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))))));
   left: calc(50% - ( 0.5 * 40px));
   width: 40px;
-  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  height: calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))));
   background-color: #00a2ff;
   border: 1px solid black;
-  transform: translateX(calc((-1) * calc(20px + ((40px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 20px)) rotateY(90deg);
+  transform: translateX(calc((-1) * calc(20px + ((70px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 20px)) rotateY(90deg);
 }
-.calculator .right-face {
+body .calculator .right-face {
   position: absolute;
-  top: calc(50% - ( 0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
+  top: calc(50% - ( 0.5 * calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))))));
   left: calc(50% - ( 0.5 * 40px));
   width: 40px;
-  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  height: calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))));
   background-color: #f700ff;
   border: 1px solid black;
-  transform: translateX(calc(calc(20px + ((40px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 20px)) rotateY(90deg);
+  transform: translateX(calc(calc(20px + ((70px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 20px)) rotateY(90deg);
 }
-.calculator .back-face {
+body .calculator .back-face {
   position: absolute;
-  top: calc(50% - (0.5 * calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))))));
-  left: calc(50% - (0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+  top: calc(50% - (0.5 * calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))))));
+  left: calc(50% - (0.5 * calc(20px + ((70px + (2 * 10px)) * 4))));
   border: 1px solid black;
   background-color: #69065a;
-  width: calc(20px + ((40px + (2 * 10px)) * 4));
-  height: calc(70px + (4 * 40px) + (8 * (40px + (2 * 10px))));
+  width: calc(20px + ((70px + (2 * 10px)) * 4));
+  height: calc(70px + (4 * 40px) + (8 * (70px + (2 * 10px))));
   transform: translateZ(calc( -1 * 40px));
 }
