@@ -284,6 +284,7 @@ const backspaceEvent = () => {
 deleteBtn.addEventListener('click', () => {backspaceEvent}); //THIS ISNT RUNNING ON CLICK. The function works fine when accessed via keypress(line282). On click does register the div being clicked (line 293)
 
 //VARIABLE BUTTONS - This is all awful and im sure could be improved alot alot alot alot
+// should generate these from the variablesDict
 const xValue = document.querySelector('#x-value');
 const xSet = document.querySelector('#x-set');
 const xClear = document.querySelector('#x-clear');
