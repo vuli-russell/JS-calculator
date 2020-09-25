@@ -206,11 +206,13 @@ body {
 
                     &.button-container{
                         &:hover{
-                            transform: translateZ(calc((-1) * (#{$button-depth} * 0.6)));
-    
                             .button-front-face{
                                 background-color:rgb(71, 70, 70);
                             }
+                        }
+
+                        &.pressed {
+                            transform: translateZ(calc((-1) * (#{$button-depth} * 0.6)));
                         }
 
                         &.var-value{

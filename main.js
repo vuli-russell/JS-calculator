@@ -313,6 +313,7 @@ const inputButtonEvent = (id,button) => {
 buttons.forEach(button => {
     button.addEventListener('click',()=>{
         inputButtonEvent(button.id,button);
+        pressButton(button);
     });
 });
 
@@ -478,6 +479,7 @@ document.addEventListener('mousemove',(e)=>{
 //media queries to resize calculator and info boxes
 //background - stars or someshit idk
 //add CUSTOMISE allowing color choice and backface text or something 
+//prevent closing a bracket that hasnt been opened
 
 //DISPLAY STUFF
 const calculator = document.querySelector('.calculator')
@@ -503,6 +505,10 @@ opener.addEventListener('click',()=>{
     infoPane.classList.toggle('shown');
 });
 
-
+//function to depress button on click
+const pressButton = button => {
+    button.classList.add('pressed');
+    setTimeout(()=>{button.classList.remove('pressed')},200);
+}
 
 

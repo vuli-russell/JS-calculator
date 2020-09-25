@@ -149,11 +149,11 @@ body .calculator .front-face .buttons div .button-front-face {
   transform: translateZ(calc(15px));
   background-color: grey;
 }
-body .calculator .front-face .buttons div.button-container:hover {
-  transform: translateZ(calc((-1) * (15px * 0.6)));
-}
 body .calculator .front-face .buttons div.button-container:hover .button-front-face {
   background-color: #474646;
+}
+body .calculator .front-face .buttons div.button-container.pressed {
+  transform: translateZ(calc((-1) * (15px * 0.6)));
 }
 body .calculator .front-face .buttons div.button-container.var-value {
   transform: none;
