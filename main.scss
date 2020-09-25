@@ -29,6 +29,8 @@ $button-size: 70px;
 $button-font-size: 30px;
 $button-margin: 10px;
 
+$button-depth: 15px;
+
 $calc-width: calc(20px + ((#{$button-size} + (2 * #{$button-margin})) * 4));
 $calc-height: calc(70px + (4 * #{$display-font-size}) + (8 * (#{$button-size} + (2 * #{$button-margin}))));
 $calc-depth: 40px;
@@ -40,7 +42,7 @@ $info-width: 25vw;
 $info-font-size: 20px;
 
 body {
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: rgb(9, 9, 44);
     text-align: left;    
 
@@ -110,8 +112,6 @@ body {
                 font-weight: 100;
                 letter-spacing: 0.1em;
             }
-
-
                         
         }
 
@@ -172,25 +172,54 @@ body {
                     align-items: center;
                     justify-content: center;
                     background-color: $button-color;
-                    border-radius: 50%;
+                    border-radius: 10%;
                     margin: $button-margin;
                     color: $button-text-color;
-        
-                &:hover {
-                    background-color: $button-hover-color;
-                }
-        
-                &.invalid-input{
-                    background-color: $button-error-color
-                }
-        
-                &.var-value{
-                    border-radius: 0;
-        
-                    &:hover {
-                        background-color: button-color;
+
+                    *{
+                        position: absolute;
+                        background-color: rgb(49, 44, 44);
+                        border-radius: 0;
                     }
-                }
+                    .button-top-face{
+                        height: $button-depth;
+                        transform: translateY(calc((-1) * #{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateX(90deg);
+
+                    }
+                    .button-bottom-face{
+                        height: $button-depth;
+                        transform: translateY(calc(#{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateX(90deg);
+                    }
+                    .button-left-face{
+                        width: $button-depth;
+                        transform: translateX(calc((-1) * #{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateY(90deg);
+                    }
+                    .button-right-face{
+                        width: $button-depth;
+                        transform: translateX(calc(#{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateY(90deg); 
+                    }
+                    .button-front-face{
+                        transform: translateZ(calc(#{$button-depth}));
+                        background-color: grey;
+                    }
+
+                    &.button-container{
+                        &:hover{
+                            transform: translateZ(calc((-1) * (#{$button-depth} * 0.6)));
+    
+                            .button-front-face{
+                                background-color:rgb(71, 70, 70);
+                            }
+                        }
+
+                        &.var-value{
+                            transform: none;
+                        }
+                    }
+
+                    &.invalid-input .button-front-face{
+                        background-color: $button-error-color
+                    }
                 }
             }
         }

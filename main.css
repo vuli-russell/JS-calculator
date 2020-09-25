@@ -9,7 +9,7 @@
 }
 
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: #09092c;
   text-align: left;
 }
@@ -119,21 +119,46 @@ body .calculator .front-face .buttons div {
   align-items: center;
   justify-content: center;
   background-color: grey;
-  border-radius: 50%;
+  border-radius: 10%;
   margin: 10px;
   color: black;
 }
-body .calculator .front-face .buttons div:hover {
-  background-color: white;
-}
-body .calculator .front-face .buttons div.invalid-input {
-  background-color: red;
-}
-body .calculator .front-face .buttons div.var-value {
+body .calculator .front-face .buttons div * {
+  position: absolute;
+  background-color: #312c2c;
   border-radius: 0;
 }
-body .calculator .front-face .buttons div.var-value:hover {
-  background-color: button-color;
+body .calculator .front-face .buttons div .button-top-face {
+  height: 15px;
+  transform: translateY(calc((-1) * 70px / 2)) translateZ(calc(15px / 2)) rotateX(90deg);
+}
+body .calculator .front-face .buttons div .button-bottom-face {
+  height: 15px;
+  transform: translateY(calc(70px / 2)) translateZ(calc(15px / 2)) rotateX(90deg);
+}
+body .calculator .front-face .buttons div .button-left-face {
+  width: 15px;
+  transform: translateX(calc((-1) * 70px / 2)) translateZ(calc(15px / 2)) rotateY(90deg);
+}
+body .calculator .front-face .buttons div .button-right-face {
+  width: 15px;
+  transform: translateX(calc(70px / 2)) translateZ(calc(15px / 2)) rotateY(90deg);
+}
+body .calculator .front-face .buttons div .button-front-face {
+  transform: translateZ(calc(15px));
+  background-color: grey;
+}
+body .calculator .front-face .buttons div.button-container:hover {
+  transform: translateZ(calc((-1) * (15px * 0.6)));
+}
+body .calculator .front-face .buttons div.button-container:hover .button-front-face {
+  background-color: #474646;
+}
+body .calculator .front-face .buttons div.button-container.var-value {
+  transform: none;
+}
+body .calculator .front-face .buttons div.invalid-input .button-front-face {
+  background-color: red;
 }
 body .calculator .bottom-face {
   position: absolute;
