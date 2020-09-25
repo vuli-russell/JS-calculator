@@ -1,3 +1,63 @@
+//BUTTON GENERATION LOOP
+
+
+//generating numbers
+
+const buttonsIDArr = ['clear','/','*','delete','7','8','9','-','4','5','6','+','1','2','3','equals-button','0','.','^','ans',')','('];
+const buttonsTextArr = ['C','/','X','Del','7','8','9','-','4','5','6','+','1','2','3','=','0','.','^','ans',')','('];
+const buttonsArea = document.querySelector('.buttons.numbers');
+
+buttonsIDArr.forEach((buttonId,index) => {
+    let container = document.createElement('div');
+    container.id = buttonId;
+    container.classList.add('input');
+    container.classList.add('button-container');
+    let topFace = document.createElement('div');
+    topFace.classList.add('button-top-face');
+    let bottomFace = document.createElement('div');
+    bottomFace.classList.add('button-bottom-face');
+    let leftFace = document.createElement('div');
+    leftFace.classList.add('button-left-face');
+    let rightFace = document.createElement('div');
+    rightFace.classList.add('button-right-face');
+    let frontFace = document.createElement('div');
+    frontFace.classList.add('button-front-face');
+    frontFace.innerText = buttonsTextArr[index];
+
+    container.append(topFace,bottomFace,leftFace,rightFace,frontFace);
+
+    buttonsArea.append(container);
+});
+
+//generating variables
+
+const varButtonsIDArr = ['x','x-value','x-set','x-clear','y','y-value','y-set','y-clear'];
+const varButtonsTextArr = ['x','','M+','M-','y','','M+','M-'];
+const varButtonsClassArr = ['input','var-value',null,null,'input','var-value',null,null];
+const varButtonsArea = document.querySelector('.buttons.variables');
+
+varButtonsIDArr.forEach((buttonId,index) => {
+    let container = document.createElement('div');
+    container.id = buttonId;
+    container.classList.add(varButtonsClassArr[index]);
+    container.classList.add('button-container');
+    let topFace = document.createElement('div');
+    topFace.classList.add('button-top-face');
+    let bottomFace = document.createElement('div');
+    bottomFace.classList.add('button-bottom-face');
+    let leftFace = document.createElement('div');
+    leftFace.classList.add('button-left-face');
+    let rightFace = document.createElement('div');
+    rightFace.classList.add('button-right-face');
+    let frontFace = document.createElement('div');
+    frontFace.classList.add('button-front-face');
+    frontFace.innerText = varButtonsTextArr[index];
+
+    container.append(topFace,bottomFace,leftFace,rightFace,frontFace);
+
+    varButtonsArea.append(container);
+});
+
 //CALCULATION FUNCTIONS
 
 //Regular expressions
@@ -279,6 +339,7 @@ clearBtn.addEventListener('click', clearEvent);
 //BACKSPACE==============================================================================
 const deleteBtn = document.querySelector('#delete');
 const backspaceEvent = () => {
+    //if previous char is an s delete 3 (for ans)
     display.innerText = display.innerText.slice(0, -1);
     secondaryDisplay.innerText = evaluateExpression(display.innerText, answer);
     newExpression = false;
