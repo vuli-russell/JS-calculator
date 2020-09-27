@@ -495,6 +495,7 @@ document.addEventListener('mousemove',(e)=>{
 //background - stars or someshit idk
 //add CUSTOMISE allowing color choice and backface text or something 
 //DONE prevent closing a bracket that hasnt been opened
+//add a browser check - doesnt work on safari due to regex lookbehinds
 
 //DISPLAY STUFF
 const calculator = document.querySelector('.calculator')
