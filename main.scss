@@ -96,7 +96,6 @@ body {
             width: $info-width;
             margin-left: calc(1.5 * #{$more-info-font-size});
             height: $info-height;
-            border: 1px dashed white;
             background-color: transparent;
             color: white;
             transform: rotateY(100deg);
@@ -147,6 +146,7 @@ body {
                     text-align: left;
                     border: 1px solid white;
                     background-color: $display-color;
+                    overflow-x: auto;
                     
         
                     &.secondary{

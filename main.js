@@ -3,14 +3,15 @@
 
 //generating numbers
 
-const buttonsIDArr = ['clear','/','*','delete','7','8','9','-','4','5','6','+','1','2','3','equals-button','0','.','^','ans',')','('];
-const buttonsTextArr = ['C','/','X','Del','7','8','9','-','4','5','6','+','1','2','3','=','0','.','^','ans',')','('];
+const buttonsIDArr = ['clear','/','*','delete','7','8','9','-','4','5','6','+','1','2','3','equals-button','0','.','^','ans','(',')'];
+const buttonsTextArr = ['C','/','X','Del','7','8','9','-','4','5','6','+','1','2','3','=','0','.','^','ans','(',')'];
+const buttonsClassArr = ['command','input','input','command','input','input','input','input','input','input','input','input','input','input','input','command','input','input','input','input','input','input'];
 const buttonsArea = document.querySelector('.buttons.numbers');
 
 buttonsIDArr.forEach((buttonId,index) => {
     let container = document.createElement('div');
     container.id = buttonId;
-    container.classList.add('input');
+    container.classList.add(buttonsClassArr[index]);
     container.classList.add('button-container');
     let topFace = document.createElement('div');
     topFace.classList.add('button-top-face');
@@ -33,7 +34,7 @@ buttonsIDArr.forEach((buttonId,index) => {
 
 const varButtonsIDArr = ['x','x-value','x-set','x-clear','y','y-value','y-set','y-clear'];
 const varButtonsTextArr = ['x','','M+','M-','y','','M+','M-'];
-const varButtonsClassArr = ['input','var-value',null,null,'input','var-value',null,null];
+const varButtonsClassArr = ['input','var-value','command','command','input','var-value','command','command'];
 const varButtonsArea = document.querySelector('.buttons.variables');
 
 varButtonsIDArr.forEach((buttonId,index) => {
@@ -81,8 +82,8 @@ let leadingDecimalPlaceRegex = /(?<!\d)\./g;
 let trailingDecimalPlaceRegex = /\.(?!\d)/g;
 
 //to multiply brackets if no operator is given
-let multiplyOpeningBracketRegex = /(?<!^)(?<![\+\-\*\/\^])\(/g;
-let multiplyClosingBracketRegex = /\)(?![\+\-\*\/\^])(?!$)/g
+let multiplyOpeningBracketRegex = /(?<!^)(?<!\()(?<![\+\-\*\/\^])\(/g;
+let multiplyClosingBracketRegex = /\)(?![\+\-\*\/\^])(?!$)(?!\))/g
 
 //variable Regex - update to include other variables
 let variableRegex = /[xy]/g;
@@ -234,40 +235,51 @@ const inputCheck = (newInput, currentString) => {
             } else {
                 return true;
             }
-            case '^':
-            case '/':
-            case '*':
-            case '+':
-                if (
+        case '^':
+        case '/':
+        case '*':
+        case '+':
+            if (
+                inputType(currentString.charAt(currentString.length - 1)) == 'digit' ||
+                inputType(currentString.charAt(currentString.length - 1)) == '.' ||
+                inputType(currentString.charAt(currentString.length - 1)) == '(' ||
+                inputType(currentString.charAt(currentString.length - 1)) == ')' ||
+                inputType(currentString.charAt(currentString.length - 1)) == 'ans'||
+                inputType(currentString.charAt(currentString.length - 1)) == 'variable'
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        case '.':
+            if ((currentString + newInput).match(decimalPointRegex)) {
+                return false;
+            } else {
+                return true;
+            }
+        case '(':
+            return true;
+        case ')':
+            if (
+                (
                     inputType(currentString.charAt(currentString.length - 1)) == 'digit' ||
                     inputType(currentString.charAt(currentString.length - 1)) == '.' ||
-                    inputType(currentString.charAt(currentString.length - 1)) == '(' ||
-                    inputType(currentString.charAt(currentString.length - 1)) == ')' ||
-                    inputType(currentString.charAt(currentString.length - 1)) == 'ans'||
-                    inputType(currentString.charAt(currentString.length - 1)) == 'variable'
-                ) {
-                    return true;
-                } else {
-                    return false;
-                }
-                case '.':
-                    if ((currentString + newInput).match(decimalPointRegex)) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                    case '(':
-                        return true;
-                    case ')':
-                        if (
-                            inputType(currentString.charAt(currentString.length - 1)) == 'digit' ||
-                            inputType(currentString.charAt(currentString.length - 1)) == '.' ||
-                            inputType(currentString.charAt(currentString.length - 1)) == ')'
-                        ) {
-                            return true;
-                        }
-                        default:
-                            return false;
+                    inputType(currentString.charAt(currentString.length - 1)) == ')'
+                )&&(
+                    ((currentString.match(/\(/g) ? currentString.match(/\(/g).length : 0) > (currentString.match(/\)/g) ? currentString.match((/\)/g)).length : 0))
+                )
+            ) {
+                return true;
+            } else {
+                console.log(currentString)
+                console.log(currentString.match(/\(/));
+                console.log(currentString.match(/\)/));
+                
+                
+                return false
+            }
+        default:
+            return false;
     }
 };
 
@@ -299,6 +311,7 @@ const inputButtonEvent = (id,button) => {
         display.innerText += id
         secondaryDisplay.innerText = evaluateExpression(display.innerText, answer);
         newExpression=false;
+        pressButton(button);
     } else {
         if(button){
             button.classList.add('invalid-input');
@@ -313,13 +326,13 @@ const inputButtonEvent = (id,button) => {
 buttons.forEach(button => {
     button.addEventListener('click',()=>{
         inputButtonEvent(button.id,button);
-        pressButton(button);
     });
 });
 
 //EQUALS================================================================================
 const equalsBtn = document.querySelector('#equals-button');
 const equalsEvent = () =>{
+    pressButton(equalsBtn);
     answer = evaluateExpression(display.innerText, answer);
     display.innerText = answer;
     secondaryDisplay.innerText = "";
@@ -330,6 +343,7 @@ equalsBtn.addEventListener('click', equalsEvent);
 //CLEAR================================================================================
 const clearBtn = document.querySelector('#clear');
 const clearEvent = () => {
+    pressButton(clearBtn);
     display.innerText = "";
     secondaryDisplay.innerText = "";
     answer = '0';
@@ -340,6 +354,7 @@ clearBtn.addEventListener('click', clearEvent);
 //BACKSPACE==============================================================================
 const deleteBtn = document.querySelector('#delete');
 const backspaceEvent = () => {
+    pressButton(deleteBtn);
     //if previous char is an s delete 3 (for ans)
     display.innerText = display.innerText.slice(0, -1);
     secondaryDisplay.innerText = evaluateExpression(display.innerText, answer);
@@ -358,7 +373,7 @@ const ySet = document.querySelector('#y-set');
 const yClear = document.querySelector('#y-clear');
 
 xSet.addEventListener('click',()=>{
-    variableDict.x=display.innerText;
+    variableDict.x=secondaryDisplay.innerText;
     xValue.innerText = variableDict.x;
 })
 xClear.addEventListener('click',()=>{
@@ -367,7 +382,7 @@ xClear.addEventListener('click',()=>{
 })
 
 ySet.addEventListener('click',()=>{
-    variableDict.y=display.innerText;
+    variableDict.y=secondaryDisplay.innerText;
     yValue.innerText = variableDict.y;
 })
 yClear.addEventListener('click',()=>{
@@ -399,7 +414,7 @@ document.addEventListener('keydown', e => {
             clearEvent();
             break;
         case 'input button':
-            inputButtonEvent(e.key,null);
+            inputButtonEvent(e.key,document.getElementById(e.key));
             break;
         case 'a':
         case 'ArrowLeft':
@@ -471,15 +486,15 @@ document.addEventListener('mousemove',(e)=>{
 //add arrows to navigate through input 
 ////DONE ans isnt working properly
 //rewrite event listeners to be a singel event listener and respond appropriately based on e.target.innerHTML or similar.
-//Two decimal placs in a row breaks it
+//DONE Two decimal placs in a row breaks it
 //standard form causes issuses (js return this from some calcs),  add step to parser
 //max number of characters??
 //add mouse interaction for rotation - FIX TO ACCOUNT FOR CURRENT LOCATION OF AXIS. Also add touch support
-//m+ should only be able to be added when newexpression = true
+//DONE changed to secondary value //m+ should only be able to be added when newexpression = true
 //media queries to resize calculator and info boxes
 //background - stars or someshit idk
 //add CUSTOMISE allowing color choice and backface text or something 
-//prevent closing a bracket that hasnt been opened
+//DONE prevent closing a bracket that hasnt been opened
 
 //DISPLAY STUFF
 const calculator = document.querySelector('.calculator')

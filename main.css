@@ -57,7 +57,6 @@ body .info-pane .about {
   width: 25vw;
   margin-left: calc(1.5 * 40px);
   height: 380px;
-  border: 1px dashed white;
   background-color: transparent;
   color: white;
   transform: rotateY(100deg);
@@ -99,6 +98,7 @@ body .calculator .front-face .displays .display {
   text-align: left;
   border: 1px solid white;
   background-color: black;
+  overflow-x: auto;
 }
 body .calculator .front-face .displays .display.secondary {
   text-align: right;
