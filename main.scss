@@ -118,6 +118,7 @@ body {
 
     .calculator {
         position: absolute;
+        left: 10%;
         top: 0;
         height: 100vh;
         width: 100%;
@@ -290,6 +291,520 @@ body {
                 padding: 50px;
                 font-size: 20px;
                 letter-spacing: 0.05em;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1880px){
+    $info-font-size: 15px;
+    body {
+        .info-pane {
+            .about {
+                font-size: $info-font-size;                            
+            }
+        }
+    }  
+}
+
+@media screen and (max-width: 1100px){
+
+    $display-font-size: 30px;
+
+    $button-size: 50px;
+    $button-font-size: 20px;
+    $button-margin: 10px;
+
+    $button-depth: 10px;
+
+    $calc-width: calc(20px + ((#{$button-size} + (2 * #{$button-margin})) * 4));
+    $calc-height: calc(70px + (4 * #{$display-font-size}) + (8 * (#{$button-size} + (2 * #{$button-margin}))));
+    $calc-depth: 30px;
+
+    $heading-size: 40px;
+    $info-height: 380px;
+    $more-info-font-size: 10px;
+    $info-width: 25vw;
+    $info-font-size: 13px;
+
+    body {
+
+        h1{
+            font-size: $heading-size;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .info-pane {
+            .about {
+                font-size: $info-font-size;                            
+            }
+        }
+
+        .calculator {
+            left: 10%;
+            height: 100vh;
+            width: 100%;
+    
+            .front-face{
+                top: calc(50% - (0.5 * #{$calc-height}));
+                left: calc(50% - (0.5 * #{$calc-width}));
+                width:  $calc-width;
+                height: $calc-height;
+    
+                .displays {
+    
+                    .display{
+                        font-size: $display-font-size;
+                        height: 2em;
+                        margin: 10px;
+                    }      
+                }
+    
+                .buttons {
+                    margin: 10px;
+                    
+                    div {
+                        height: $button-size;
+                        width: $button-size;
+                        font-size: $button-font-size;
+                        margin: $button-margin;
+    
+                        .button-top-face{
+                            height: $button-depth;
+                            transform: translateY(calc((-1) * #{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateX(90deg);
+    
+                        }
+                        .button-bottom-face{
+                            height: $button-depth;
+                            transform: translateY(calc(#{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateX(90deg);
+                        }
+                        .button-left-face{
+                            width: $button-depth;
+                            transform: translateX(calc((-1) * #{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateY(90deg);
+                        }
+                        .button-right-face{
+                            width: $button-depth;
+                            transform: translateX(calc(#{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateY(90deg); 
+                        }
+                        .button-front-face{
+                            transform: translateZ(calc(#{$button-depth}));
+                        }
+    
+                        &.button-container{  
+                            &.pressed {
+                                transform: translateZ(calc((-1) * (#{$button-depth} * 0.6)));
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .bottom-face {
+                top: calc(50% - ( 0.5 * #{$calc-depth}));
+                left: calc(50% - ( 0.5 * #{$calc-width}));
+                width: $calc-width;
+                height: $calc-depth;
+                transform: translateY(calc(#{$calc-height / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateX(90deg);
+            }
+    
+            .top-face {
+                top: calc(50% - ( 0.5 * #{$calc-depth}));
+                left: calc(50% - ( 0.5 * #{$calc-width}));
+                width: $calc-width;
+                height: $calc-depth;
+                transform: translateY(calc((-1) * #{$calc-height / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateX(90deg);
+            }
+    
+    
+            .left-face {
+                top: calc(50% - ( 0.5 * #{$calc-height}));
+                left: calc(50% - ( 0.5 * #{$calc-depth}));
+                width: $calc-depth;
+                height: $calc-height;
+                transform: translateX(calc((-1) * #{$calc-width / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateY(90deg);
+            }
+    
+            .right-face {
+                top: calc(50% - ( 0.5 * #{$calc-height}));
+                left: calc(50% - ( 0.5 * #{$calc-depth}));
+                width: $calc-depth;
+                height: $calc-height;
+                transform: translateX(calc(#{$calc-width / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateY(90deg);
+            }
+    
+            .back-face{
+                top: calc(50% - (0.5 * #{$calc-height}));
+                left: calc(50% - (0.5 * #{$calc-width}));
+                width:  $calc-width;
+                height: $calc-height;
+                transform: translateZ(calc( -1 * #{$calc-depth})) rotateY(180deg);
+                
+                p{
+                    padding: 50px;
+                    font-size: 20px;
+                    letter-spacing: 0.05em;
+                }
+            }
+        }
+    }  
+}
+
+@media screen and (max-width: 730px){
+
+
+    $display-font-size: 30px;
+
+    $button-size: 40px;
+    $button-font-size: 20px;
+    $button-margin: 10px;
+
+    $button-depth: 10px;
+
+    $calc-width: calc(20px + ((#{$button-size} + (2 * #{$button-margin})) * 4));
+    $calc-height: calc(70px + (4 * #{$display-font-size}) + (8 * (#{$button-size} + (2 * #{$button-margin}))));
+    $calc-depth: 30px;
+
+    $heading-size: 40px;
+    $more-info-font-size: 30px;
+    $info-font-size: 13px;
+
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        header{
+            height: 100vh;
+        }
+        h1{
+            font-family: 'Londrina Outline';
+            font-size: $heading-size;
+        }
+
+        .info-pane {
+            position: relative;
+            transform: translateX(0px);
+            top: calc(-#{$more-info-font-size} - 15px);
+
+            .opener {
+                width: 100%;
+                font-size: $more-info-font-size;
+                line-height: 1.5em;
+                transform: rotateZ(0deg) translateX(0px);
+                transform-origin: bottom left;
+                text-align: center;
+            }
+
+            .about {
+                position: relative;
+                top: calc(#{$more-info-font-size} + 15px);
+                font-size: $info-font-size;
+                width: 100%;
+                height: initial;
+                margin: 0;
+                transform: rotateY(0deg);
+
+                &.shown {
+                    transform: rotateY(0deg);
+                }          
+            }
+        }
+
+        .calculator {
+            position: absolute;
+            left: 10%;
+            top: 0;
+
+            
+            .front-face{
+                top: calc(50% - (0.5 * #{$calc-height}));
+                left: calc(50% - (0.5 * #{$calc-width}));
+                width:  $calc-width;
+                height: $calc-height;
+
+                .displays {
+
+                    .display{
+                        font-size: $display-font-size;
+                        height: 2em;
+                        margin: 10px;
+                        overflow-x: auto;
+                    }      
+                }
+
+                .buttons {
+                    height: 100%;
+                    border: 1px solid white;
+                    margin: 10px;
+                    
+            
+                    div {
+                        height: $button-size;
+                        width: $button-size;
+                        font-size: $button-font-size;
+                        margin: $button-margin;
+
+                        .button-top-face{
+                            height: $button-depth;
+                            transform: translateY(calc((-1) * #{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateX(90deg);
+
+                        }
+                        .button-bottom-face{
+                            height: $button-depth;
+                            transform: translateY(calc(#{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateX(90deg);
+                        }
+                        .button-left-face{
+                            width: $button-depth;
+                            transform: translateX(calc((-1) * #{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateY(90deg);
+                        }
+                        .button-right-face{
+                            width: $button-depth;
+                            transform: translateX(calc(#{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateY(90deg); 
+                        }
+                        .button-front-face{
+                            transform: translateZ(calc(#{$button-depth}));
+                        }
+
+                        &.button-container{
+
+                            &.pressed {
+                                transform: translateZ(calc((-1) * (#{$button-depth} * 0.6)));
+                            }
+
+                            &.var-value{
+                                transform: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .bottom-face {
+                top: calc(50% - ( 0.5 * #{$calc-depth}));
+                left: calc(50% - ( 0.5 * #{$calc-width}));
+                width: $calc-width;
+                height: $calc-depth;
+                transform: translateY(calc(#{$calc-height / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateX(90deg);
+            }
+
+            .top-face {
+                top: calc(50% - ( 0.5 * #{$calc-depth}));
+                left: calc(50% - ( 0.5 * #{$calc-width}));
+                width: $calc-width;
+                height: $calc-depth;
+                transform: translateY(calc((-1) * #{$calc-height / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateX(90deg);
+            }
+
+
+            .left-face {
+                top: calc(50% - ( 0.5 * #{$calc-height}));
+                left: calc(50% - ( 0.5 * #{$calc-depth}));
+                width: $calc-depth;
+                height: $calc-height;
+                transform: translateX(calc((-1) * #{$calc-width / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateY(90deg);
+            }
+
+            .right-face {
+                top: calc(50% - ( 0.5 * #{$calc-height}));
+                left: calc(50% - ( 0.5 * #{$calc-depth}));
+                width: $calc-depth;
+                height: $calc-height;
+                transform: translateX(calc(#{$calc-width / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateY(90deg);
+            }
+
+            .back-face{
+                top: calc(50% - (0.5 * #{$calc-height}));
+                left: calc(50% - (0.5 * #{$calc-width}));
+                width:  $calc-width;
+                height: $calc-height;
+                transform: translateZ(calc( -1 * #{$calc-depth})) rotateY(180deg);
+                
+                p{
+                    color: black;
+                    padding: 50px;
+                    font-size: 20px;
+                    letter-spacing: 0.05em;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 425px){
+
+
+    $display-font-size: 20px;
+
+    $button-size: 30px;
+    $button-font-size: 15px;
+    $button-margin: 5px;
+
+    $button-depth: 10px;
+
+    $calc-width: calc(20px + ((#{$button-size} + (2 * #{$button-margin})) * 4));
+    $calc-height: calc(70px + (4 * #{$display-font-size}) + (8 * (#{$button-size} + (2 * #{$button-margin}))));
+    $calc-depth: 30px;
+
+    $heading-size: 40px;
+    $more-info-font-size: 30px;
+    $info-font-size: 13px;
+
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        header{
+            height: 100vh;
+        }
+        h1{
+            font-family: 'Londrina Outline';
+            font-size: $heading-size;
+        }
+
+        .info-pane {
+            position: relative;
+            transform: translateX(0px);
+            top: calc(-#{$more-info-font-size} - 15px);
+
+            .opener {
+                width: 100%;
+                font-size: $more-info-font-size;
+                line-height: 1.5em;
+                transform: rotateZ(0deg) translateX(0px);
+                transform-origin: bottom left;
+                text-align: center;
+            }
+
+            .about {
+                position: relative;
+                top: calc(#{$more-info-font-size} + 15px);
+                font-size: $info-font-size;
+                width: 100%;
+                height: initial;
+                margin: 0;
+                transform: rotateY(0deg);
+
+                &.shown {
+                    transform: rotateY(0deg);
+                }          
+            }
+        }
+
+        .calculator {
+            position: absolute;
+            left: 10%;
+            top: 0;
+
+            
+            .front-face{
+                top: calc(50% - (0.5 * #{$calc-height}));
+                left: calc(50% - (0.5 * #{$calc-width}));
+                width:  $calc-width;
+                height: $calc-height;
+
+                .displays {
+
+                    .display{
+                        font-size: $display-font-size;
+                        height: 2em;
+                        margin: 10px;
+                        overflow-x: auto;
+                    }      
+                }
+
+                .buttons {
+                    height: 100%;
+                    border: 1px solid white;
+                    margin: 10px;
+                    
+            
+                    div {
+                        height: $button-size;
+                        width: $button-size;
+                        font-size: $button-font-size;
+                        margin: $button-margin;
+
+                        .button-top-face{
+                            height: $button-depth;
+                            transform: translateY(calc((-1) * #{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateX(90deg);
+
+                        }
+                        .button-bottom-face{
+                            height: $button-depth;
+                            transform: translateY(calc(#{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateX(90deg);
+                        }
+                        .button-left-face{
+                            width: $button-depth;
+                            transform: translateX(calc((-1) * #{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateY(90deg);
+                        }
+                        .button-right-face{
+                            width: $button-depth;
+                            transform: translateX(calc(#{$button-size} / 2)) translateZ(calc(#{$button-depth} / 2)) rotateY(90deg); 
+                        }
+                        .button-front-face{
+                            transform: translateZ(calc(#{$button-depth}));
+                        }
+
+                        &.button-container{
+
+                            &.pressed {
+                                transform: translateZ(calc((-1) * (#{$button-depth} * 0.6)));
+                            }
+
+                            &.var-value{
+                                transform: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .bottom-face {
+                top: calc(50% - ( 0.5 * #{$calc-depth}));
+                left: calc(50% - ( 0.5 * #{$calc-width}));
+                width: $calc-width;
+                height: $calc-depth;
+                transform: translateY(calc(#{$calc-height / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateX(90deg);
+            }
+
+            .top-face {
+                top: calc(50% - ( 0.5 * #{$calc-depth}));
+                left: calc(50% - ( 0.5 * #{$calc-width}));
+                width: $calc-width;
+                height: $calc-depth;
+                transform: translateY(calc((-1) * #{$calc-height / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateX(90deg);
+            }
+
+
+            .left-face {
+                top: calc(50% - ( 0.5 * #{$calc-height}));
+                left: calc(50% - ( 0.5 * #{$calc-depth}));
+                width: $calc-depth;
+                height: $calc-height;
+                transform: translateX(calc((-1) * #{$calc-width / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateY(90deg);
+            }
+
+            .right-face {
+                top: calc(50% - ( 0.5 * #{$calc-height}));
+                left: calc(50% - ( 0.5 * #{$calc-depth}));
+                width: $calc-depth;
+                height: $calc-height;
+                transform: translateX(calc(#{$calc-width / 2})) translateZ(calc((-1) * #{$calc-depth / 2})) rotateY(90deg);
+            }
+
+            .back-face{
+                top: calc(50% - (0.5 * #{$calc-height}));
+                left: calc(50% - (0.5 * #{$calc-width}));
+                width:  $calc-width;
+                height: $calc-height;
+                transform: translateZ(calc( -1 * #{$calc-depth})) rotateY(180deg);
+                
+                p{
+                    color: black;
+                    padding: 50px;
+                    font-size: 20px;
+                    letter-spacing: 0.05em;
+                }
             }
         }
     }

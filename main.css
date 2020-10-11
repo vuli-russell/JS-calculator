@@ -73,6 +73,7 @@ body .info-pane .about p {
 }
 body .calculator {
   position: absolute;
+  left: 10%;
   top: 0;
   height: 100vh;
   width: 100%;
@@ -219,4 +220,371 @@ body .calculator .back-face p {
   padding: 50px;
   font-size: 20px;
   letter-spacing: 0.05em;
+}
+
+@media screen and (max-width: 1880px) {
+  body .info-pane .about {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  body h1 {
+    font-size: 40px;
+    margin: 20px;
+    padding: 20px;
+  }
+  body .info-pane .about {
+    font-size: 13px;
+  }
+  body .calculator {
+    left: 10%;
+    height: 100vh;
+    width: 100%;
+  }
+  body .calculator .front-face {
+    top: calc(50% - (0.5 * calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))))));
+    left: calc(50% - (0.5 * calc(20px + ((50px + (2 * 10px)) * 4))));
+    width: calc(20px + ((50px + (2 * 10px)) * 4));
+    height: calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))));
+  }
+  body .calculator .front-face .displays .display {
+    font-size: 30px;
+    height: 2em;
+    margin: 10px;
+  }
+  body .calculator .front-face .buttons {
+    margin: 10px;
+  }
+  body .calculator .front-face .buttons div {
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    margin: 10px;
+  }
+  body .calculator .front-face .buttons div .button-top-face {
+    height: 10px;
+    transform: translateY(calc((-1) * 50px / 2)) translateZ(calc(10px / 2)) rotateX(90deg);
+  }
+  body .calculator .front-face .buttons div .button-bottom-face {
+    height: 10px;
+    transform: translateY(calc(50px / 2)) translateZ(calc(10px / 2)) rotateX(90deg);
+  }
+  body .calculator .front-face .buttons div .button-left-face {
+    width: 10px;
+    transform: translateX(calc((-1) * 50px / 2)) translateZ(calc(10px / 2)) rotateY(90deg);
+  }
+  body .calculator .front-face .buttons div .button-right-face {
+    width: 10px;
+    transform: translateX(calc(50px / 2)) translateZ(calc(10px / 2)) rotateY(90deg);
+  }
+  body .calculator .front-face .buttons div .button-front-face {
+    transform: translateZ(calc(10px));
+  }
+  body .calculator .front-face .buttons div.button-container.pressed {
+    transform: translateZ(calc((-1) * (10px * 0.6)));
+  }
+  body .calculator .bottom-face {
+    top: calc(50% - ( 0.5 * 30px));
+    left: calc(50% - ( 0.5 * calc(20px + ((50px + (2 * 10px)) * 4))));
+    width: calc(20px + ((50px + (2 * 10px)) * 4));
+    height: 30px;
+    transform: translateY(calc(calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))))/2)) translateZ(calc((-1) * 15px)) rotateX(90deg);
+  }
+  body .calculator .top-face {
+    top: calc(50% - ( 0.5 * 30px));
+    left: calc(50% - ( 0.5 * calc(20px + ((50px + (2 * 10px)) * 4))));
+    width: calc(20px + ((50px + (2 * 10px)) * 4));
+    height: 30px;
+    transform: translateY(calc((-1) * calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))))/2)) translateZ(calc((-1) * 15px)) rotateX(90deg);
+  }
+  body .calculator .left-face {
+    top: calc(50% - ( 0.5 * calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))))));
+    left: calc(50% - ( 0.5 * 30px));
+    width: 30px;
+    height: calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))));
+    transform: translateX(calc((-1) * calc(20px + ((50px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 15px)) rotateY(90deg);
+  }
+  body .calculator .right-face {
+    top: calc(50% - ( 0.5 * calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))))));
+    left: calc(50% - ( 0.5 * 30px));
+    width: 30px;
+    height: calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))));
+    transform: translateX(calc(calc(20px + ((50px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 15px)) rotateY(90deg);
+  }
+  body .calculator .back-face {
+    top: calc(50% - (0.5 * calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))))));
+    left: calc(50% - (0.5 * calc(20px + ((50px + (2 * 10px)) * 4))));
+    width: calc(20px + ((50px + (2 * 10px)) * 4));
+    height: calc(70px + (4 * 30px) + (8 * (50px + (2 * 10px))));
+    transform: translateZ(calc( -1 * 30px)) rotateY(180deg);
+  }
+  body .calculator .back-face p {
+    padding: 50px;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+  }
+}
+@media screen and (max-width: 730px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  body header {
+    height: 100vh;
+  }
+  body h1 {
+    font-family: "Londrina Outline";
+    font-size: 40px;
+  }
+  body .info-pane {
+    position: relative;
+    transform: translateX(0px);
+    top: calc(-30px - 15px);
+  }
+  body .info-pane .opener {
+    width: 100%;
+    font-size: 30px;
+    line-height: 1.5em;
+    transform: rotateZ(0deg) translateX(0px);
+    transform-origin: bottom left;
+    text-align: center;
+  }
+  body .info-pane .about {
+    position: relative;
+    top: calc(30px + 15px);
+    font-size: 13px;
+    width: 100%;
+    height: initial;
+    margin: 0;
+    transform: rotateY(0deg);
+  }
+  body .info-pane .about.shown {
+    transform: rotateY(0deg);
+  }
+  body .calculator {
+    position: absolute;
+    left: 10%;
+    top: 0;
+  }
+  body .calculator .front-face {
+    top: calc(50% - (0.5 * calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))))));
+    left: calc(50% - (0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+    width: calc(20px + ((40px + (2 * 10px)) * 4));
+    height: calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))));
+  }
+  body .calculator .front-face .displays .display {
+    font-size: 30px;
+    height: 2em;
+    margin: 10px;
+    overflow-x: auto;
+  }
+  body .calculator .front-face .buttons {
+    height: 100%;
+    border: 1px solid white;
+    margin: 10px;
+  }
+  body .calculator .front-face .buttons div {
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    margin: 10px;
+  }
+  body .calculator .front-face .buttons div .button-top-face {
+    height: 10px;
+    transform: translateY(calc((-1) * 40px / 2)) translateZ(calc(10px / 2)) rotateX(90deg);
+  }
+  body .calculator .front-face .buttons div .button-bottom-face {
+    height: 10px;
+    transform: translateY(calc(40px / 2)) translateZ(calc(10px / 2)) rotateX(90deg);
+  }
+  body .calculator .front-face .buttons div .button-left-face {
+    width: 10px;
+    transform: translateX(calc((-1) * 40px / 2)) translateZ(calc(10px / 2)) rotateY(90deg);
+  }
+  body .calculator .front-face .buttons div .button-right-face {
+    width: 10px;
+    transform: translateX(calc(40px / 2)) translateZ(calc(10px / 2)) rotateY(90deg);
+  }
+  body .calculator .front-face .buttons div .button-front-face {
+    transform: translateZ(calc(10px));
+  }
+  body .calculator .front-face .buttons div.button-container.pressed {
+    transform: translateZ(calc((-1) * (10px * 0.6)));
+  }
+  body .calculator .front-face .buttons div.button-container.var-value {
+    transform: none;
+  }
+  body .calculator .bottom-face {
+    top: calc(50% - ( 0.5 * 30px));
+    left: calc(50% - ( 0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+    width: calc(20px + ((40px + (2 * 10px)) * 4));
+    height: 30px;
+    transform: translateY(calc(calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))))/2)) translateZ(calc((-1) * 15px)) rotateX(90deg);
+  }
+  body .calculator .top-face {
+    top: calc(50% - ( 0.5 * 30px));
+    left: calc(50% - ( 0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+    width: calc(20px + ((40px + (2 * 10px)) * 4));
+    height: 30px;
+    transform: translateY(calc((-1) * calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))))/2)) translateZ(calc((-1) * 15px)) rotateX(90deg);
+  }
+  body .calculator .left-face {
+    top: calc(50% - ( 0.5 * calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))))));
+    left: calc(50% - ( 0.5 * 30px));
+    width: 30px;
+    height: calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))));
+    transform: translateX(calc((-1) * calc(20px + ((40px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 15px)) rotateY(90deg);
+  }
+  body .calculator .right-face {
+    top: calc(50% - ( 0.5 * calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))))));
+    left: calc(50% - ( 0.5 * 30px));
+    width: 30px;
+    height: calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))));
+    transform: translateX(calc(calc(20px + ((40px + (2 * 10px)) * 4))/2)) translateZ(calc((-1) * 15px)) rotateY(90deg);
+  }
+  body .calculator .back-face {
+    top: calc(50% - (0.5 * calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))))));
+    left: calc(50% - (0.5 * calc(20px + ((40px + (2 * 10px)) * 4))));
+    width: calc(20px + ((40px + (2 * 10px)) * 4));
+    height: calc(70px + (4 * 30px) + (8 * (40px + (2 * 10px))));
+    transform: translateZ(calc( -1 * 30px)) rotateY(180deg);
+  }
+  body .calculator .back-face p {
+    color: black;
+    padding: 50px;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+  }
+}
+@media screen and (max-width: 425px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  body header {
+    height: 100vh;
+  }
+  body h1 {
+    font-family: "Londrina Outline";
+    font-size: 40px;
+  }
+  body .info-pane {
+    position: relative;
+    transform: translateX(0px);
+    top: calc(-30px - 15px);
+  }
+  body .info-pane .opener {
+    width: 100%;
+    font-size: 30px;
+    line-height: 1.5em;
+    transform: rotateZ(0deg) translateX(0px);
+    transform-origin: bottom left;
+    text-align: center;
+  }
+  body .info-pane .about {
+    position: relative;
+    top: calc(30px + 15px);
+    font-size: 13px;
+    width: 100%;
+    height: initial;
+    margin: 0;
+    transform: rotateY(0deg);
+  }
+  body .info-pane .about.shown {
+    transform: rotateY(0deg);
+  }
+  body .calculator {
+    position: absolute;
+    left: 10%;
+    top: 0;
+  }
+  body .calculator .front-face {
+    top: calc(50% - (0.5 * calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))))));
+    left: calc(50% - (0.5 * calc(20px + ((30px + (2 * 5px)) * 4))));
+    width: calc(20px + ((30px + (2 * 5px)) * 4));
+    height: calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))));
+  }
+  body .calculator .front-face .displays .display {
+    font-size: 20px;
+    height: 2em;
+    margin: 10px;
+    overflow-x: auto;
+  }
+  body .calculator .front-face .buttons {
+    height: 100%;
+    border: 1px solid white;
+    margin: 10px;
+  }
+  body .calculator .front-face .buttons div {
+    height: 30px;
+    width: 30px;
+    font-size: 15px;
+    margin: 5px;
+  }
+  body .calculator .front-face .buttons div .button-top-face {
+    height: 10px;
+    transform: translateY(calc((-1) * 30px / 2)) translateZ(calc(10px / 2)) rotateX(90deg);
+  }
+  body .calculator .front-face .buttons div .button-bottom-face {
+    height: 10px;
+    transform: translateY(calc(30px / 2)) translateZ(calc(10px / 2)) rotateX(90deg);
+  }
+  body .calculator .front-face .buttons div .button-left-face {
+    width: 10px;
+    transform: translateX(calc((-1) * 30px / 2)) translateZ(calc(10px / 2)) rotateY(90deg);
+  }
+  body .calculator .front-face .buttons div .button-right-face {
+    width: 10px;
+    transform: translateX(calc(30px / 2)) translateZ(calc(10px / 2)) rotateY(90deg);
+  }
+  body .calculator .front-face .buttons div .button-front-face {
+    transform: translateZ(calc(10px));
+  }
+  body .calculator .front-face .buttons div.button-container.pressed {
+    transform: translateZ(calc((-1) * (10px * 0.6)));
+  }
+  body .calculator .front-face .buttons div.button-container.var-value {
+    transform: none;
+  }
+  body .calculator .bottom-face {
+    top: calc(50% - ( 0.5 * 30px));
+    left: calc(50% - ( 0.5 * calc(20px + ((30px + (2 * 5px)) * 4))));
+    width: calc(20px + ((30px + (2 * 5px)) * 4));
+    height: 30px;
+    transform: translateY(calc(calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))))/2)) translateZ(calc((-1) * 15px)) rotateX(90deg);
+  }
+  body .calculator .top-face {
+    top: calc(50% - ( 0.5 * 30px));
+    left: calc(50% - ( 0.5 * calc(20px + ((30px + (2 * 5px)) * 4))));
+    width: calc(20px + ((30px + (2 * 5px)) * 4));
+    height: 30px;
+    transform: translateY(calc((-1) * calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))))/2)) translateZ(calc((-1) * 15px)) rotateX(90deg);
+  }
+  body .calculator .left-face {
+    top: calc(50% - ( 0.5 * calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))))));
+    left: calc(50% - ( 0.5 * 30px));
+    width: 30px;
+    height: calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))));
+    transform: translateX(calc((-1) * calc(20px + ((30px + (2 * 5px)) * 4))/2)) translateZ(calc((-1) * 15px)) rotateY(90deg);
+  }
+  body .calculator .right-face {
+    top: calc(50% - ( 0.5 * calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))))));
+    left: calc(50% - ( 0.5 * 30px));
+    width: 30px;
+    height: calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))));
+    transform: translateX(calc(calc(20px + ((30px + (2 * 5px)) * 4))/2)) translateZ(calc((-1) * 15px)) rotateY(90deg);
+  }
+  body .calculator .back-face {
+    top: calc(50% - (0.5 * calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))))));
+    left: calc(50% - (0.5 * calc(20px + ((30px + (2 * 5px)) * 4))));
+    width: calc(20px + ((30px + (2 * 5px)) * 4));
+    height: calc(70px + (4 * 20px) + (8 * (30px + (2 * 5px))));
+    transform: translateZ(calc( -1 * 30px)) rotateY(180deg);
+  }
+  body .calculator .back-face p {
+    color: black;
+    padding: 50px;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+  }
 }
