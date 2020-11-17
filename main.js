@@ -61,6 +61,14 @@ varButtonsIDArr.forEach((buttonId,index) => {
 
 //CALCULATION FUNCTIONS
 
+//Check if broswer can do lookbehinds, alert if not
+try {
+    let testRegex = /(?<!\d)\./g
+}catch(e){
+    console.log(e)
+    alert("Browser cannot manage regex lookbehinds, which are used, please try chrome/firefox/chromium edge")
+}
+
 //Regular expressions
 //two sets of any number of digits, optionally followed by a . and any further digits, separated by the relevant operator. Second set of digit has an optional + or - sign. First set of digits for all expect subtraction 
 // let bracketsRegex = /\(.*\)/;
