@@ -66,7 +66,10 @@ try {
     let testRegex = /(?<!\d)\./g
 }catch(e){
     console.log(e)
-    alert("Browser cannot manage regex lookbehinds, which are used, please try chrome/firefox/chromium edge")
+    let errorText = document.createElement("p");
+    errorText.classList.add("error-text")
+    errorText.innerText = "Browser cannot manage regex lookbehinds, which are used. Please try another browser such as chrome/firefox/chromium edge";
+    document.querySelector("html").append(errorText)
 }
 
 //Regular expressions
